@@ -1,0 +1,66 @@
+create table dtw_doctor(
+    EID number(15),
+    fname varchar2(25) constraint doc_fname_nn NOT NULL,
+    lname varchar2(25) constraint doc_lname_nn NOT NULL,
+    specialization varchar2(25)  constraint doc_spc_nn NOT NULL,
+    gender char(1) constraint doc_gdr_nn NOT NULL,
+    constraint doc_pk PRIMARY KEY (EID)
+);
+describe dtw_doctor;
+-----------
+create table dtw_patient(
+    EID number(15),
+    fname varchar2(25) constraint ptn_fname_nn NOT NULL,
+    lname varchar2(25) constraint ptn_lname_nn NOT NULL,
+    age int constraint ptn_age_nn NOT NULL,
+    gender char(1)constraint ptn_gdr_nn NOT NULL,
+    weight float,
+    height float,
+    blood_type varchar(2),
+    constraint patient_pk PRIMARY KEY (EID)
+);
+describe dtw_patient;
+---------
+create table dtw_medicine(
+    ID number(15),
+    name varchar2(50) constraint med_name_nn NOT NULL,
+    age_restriction int constraint med_age_rr_nn NOT NULL,
+    manufacturer varchar2(30) constraint med_manname_nn NOT NULL,
+    dosage_per_day number(1)constraint med_dosage_nn NOT NULL,
+    constraint med_pk PRIMARY KEY (ID)
+);
+describe dtw_medicine;
+--------
+create table dtw_visits(
+    dID number(15),
+    pID number(15),
+    Vdate date,
+    constraint visit_pk PRIMARY KEY (dID,pID,Vdate),
+    constraint visit_dID_fk FOREIGN KEY(dID) REFERENCES dtw_doctor(EID),
+    constraint visit_pID_fk FOREIGN KEY(pID) REFERENCES dtw_patient(EID)
+);
+describe dtw_visits;
+--------
+create table dtw_prescribes(
+    dID number(15),
+    pID number(15),
+    mID number(15),
+    Pdate date,
+    constraint prescribe_pk PRIMARY KEY (dID,pID,mId,Pdate),
+    constraint prescribe_dID_fk FOREIGN KEY(dID) REFERENCES dtw_doctor(EID),
+    constraint prescribe_pID_fk FOREIGN KEY(pID) REFERENCES dtw_patient(EID),
+    constraint prescribe_mID_fk FOREIGN KEY(mID) REFERENCES dtw_medicine(ID)
+);
+describe dtw_prescribes;
+
+---------
+
+CREATE TABLE dtw_loginusers (
+    username VARCHAR2(25) constraint lu_username_nn NOT NULL,
+    password VARCHAR2 (25) constraint lu_pwd_nn NOT NULL,
+    name VARCHAR2 (25), 
+    type NUMBER(1)constraint lu_type_nn NOT NULL,
+    constraint loginusers_pk PRIMARY KEY (username)
+);
+describe dtw_loginusers;
+---------
