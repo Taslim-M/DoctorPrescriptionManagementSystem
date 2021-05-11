@@ -25,7 +25,9 @@ hs_err_pid*
 #specific folders
 /build/
 build/
+
 nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
