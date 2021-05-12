@@ -274,7 +274,6 @@ public class AddDoctor extends javax.swing.JFrame {
         lblHiredateError.setVisible(false);
         lblSpErr.setText("");
         lblSpErr.setVisible(false);
-
     }
 
     boolean isValidData() {
@@ -345,7 +344,7 @@ public class AddDoctor extends javax.swing.JFrame {
 
             if (isValidData()) {
                 String prepSQL = "INSERT INTO dtw_doctor (EID, fname, lname, specialization, gender) VALUES ("
-                        + txtEID.getText()
+                        + txtEID.getText().trim()
                         + ",'" + txtFname.getText() + "'"
                         + ", '" + txtLname.getText() + "'"
                         + ", '" + txtSp.getText() + "'"
