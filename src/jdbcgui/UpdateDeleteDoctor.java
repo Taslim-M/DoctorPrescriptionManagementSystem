@@ -55,7 +55,7 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
             cmbGender.removeAllItems();
             cmbGender.addItem("M");
             cmbGender.addItem("F");
-            
+
             // populate rest of fields
             rs.beforeFirst();
             rs.first();
@@ -340,23 +340,37 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            // make the result set scrolable forward/backward updatable
-            int input_confirmation_delete = JOptionPane.showConfirmDialog(null, "Confirm delete employee?");
-            if (input_confirmation_delete == 0) {
-                String prepSQL = "DELETE emp WHERE empno = " + txtEID.getText().trim();
+            boolean visits_violate = false;
+            boolean prescription_violate = false;
+            ResultSet rs2 = dbCon.executeStatement("SELECT * FROM dtw_visits where DID=" + txtEID.getText().trim());
+            if (rs2.next()) {
+                visits_violate = true;
+            }
+            ResultSet rs3 = dbCon.executeStatement("SELECT * FROM dtw_prescribes where DID=" + txtEID.getText().trim());
+            if (rs3.next()) {
+                prescription_violate = true;
+            }
+            //If exists canot delete
+            if (!prescription_violate && !visits_violate) {
+                int input_confirmation_delete = JOptionPane.showConfirmDialog(null, "Confirm delete doctor?");
+                if (input_confirmation_delete == 0) {
 
-                int result = dbCon.executePrepared(prepSQL);
-                if (result > 0) {
-                    javax.swing.JLabel label = new javax.swing.JLabel("Employee No " + txtEID.getText().trim() + " deleted successfully.");
-                    label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
-                    JOptionPane.showMessageDialog(null, label, "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-                    getNewData();
+                    String prepSQL = "DELETE dtw_doctor WHERE EID=" + txtEID.getText().trim();
+
+                    int result = dbCon.executePrepared(prepSQL);
+                    if (result > 0) {
+                        javax.swing.JLabel label = new javax.swing.JLabel("doctor No " + txtEID.getText().trim() + " deleted successfully.");
+                        label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
+                        JOptionPane.showMessageDialog(null, label, "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+                        getNewData();
+                    }
                 }
-
+            }else{
+                JOptionPane.showMessageDialog(null, "Cannot delete this doctor since he has visits/prescription assinged.");
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error adding new employee.");
+            JOptionPane.showMessageDialog(null, "Error adding new doctor.");
 
         }
 
@@ -438,13 +452,13 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
 
             if (isValidData()) {
                 //Ask for confirmation
-                int input_confirmation_update = JOptionPane.showConfirmDialog(null, "Confirm updating employee?");
+                int input_confirmation_update = JOptionPane.showConfirmDialog(null, "Confirm updating doctor?");
                 if (input_confirmation_update == 0) {
                     String prepSQL = "UPDATE dtw_doctor SET fname = "
                             + "'" + txtFname.getText() + "'"
                             + " ,lname = '" + txtLname.getText() + "'"
                             + " , specialization = '" + txtSp.getText() + "'"
-                            + " , gender ='" + cmbGender.getSelectedItem().toString()+"'"
+                            + " , gender ='" + cmbGender.getSelectedItem().toString() + "'"
                             + " WHERE eid =" + txtEID.getText().trim();
 
                     int result = dbCon.executePrepared(prepSQL);
@@ -472,7 +486,7 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
 
         } catch (SQLException e) {
 
-            JOptionPane.showMessageDialog(null, "Error updating employee." + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error updating doctor." + e.getMessage());
 
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
