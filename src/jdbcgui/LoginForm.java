@@ -150,7 +150,7 @@ public class LoginForm extends javax.swing.JFrame {
             byte[] sign = md.digest(txtPassword.getText().trim().getBytes());
             String pwdHash = String.format("%032X", new BigInteger(1, sign));
             pwdHash = pwdHash.substring(0, Math.min(pwdHash.length(), 25));
-            rs = dbCon.executeStatement("SELECT username, name, type FROM loginusers where username ='" + txtUsername.getText().trim() + "' and password ='" + pwdHash + "'");
+            rs = dbCon.executeStatement("SELECT username, name, type FROM dtw_loginusers where username ='" + txtUsername.getText().trim() + "' and password ='" + pwdHash + "'");
             if (rs.next()) {
                 validLogin = true;
                 (new Menu(new LoginUser(rs.getString("username"), rs.getString("name"), rs.getInt("type")))).setVisible(true);

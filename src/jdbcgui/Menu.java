@@ -5,10 +5,7 @@
  */
 package jdbcgui;
 
-/**
- *
- * @author wissam
- */
+
 public class Menu extends javax.swing.JFrame {
 
     LoginUser luser;
