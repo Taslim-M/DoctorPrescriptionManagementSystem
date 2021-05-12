@@ -1,53 +1,46 @@
-package jdbcgui;
-
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-import javax.swing.JOptionPane;
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package jdbcgui;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author wissam
+ * @author Tasli
  */
-public class AddDoctor extends javax.swing.JFrame {
+public class AddPatient extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddEmployee
+     * Creates new form AddPatient
      */
     myDBCon dbCon;
 
     ResultSet rs;
 
-    public AddDoctor() {
+    public AddPatient() {
         initComponents();
         // center form in screen 
         this.setLocationRelativeTo(null);
         dbCon = new myDBCon();
 
         // set all error labels to invisible
+        lblAgeErr.setVisible(false);
+        lblBloodErr.setVisible(false);
         lblEID.setVisible(false);
         lblFnameErr.setVisible(false);
+        lblHeightErr.setVisible(false);
         lblLnameErr.setVisible(false);
-        lblHiredateError.setVisible(false);
-        lblSpErr.setVisible(false);
+        lblWeightErr.setVisible(false);
 
-        //populate mgr and deptno combo boxes 
         cmbGender.removeAllItems();
         cmbGender.addItem("M");
         cmbGender.addItem("F");
-
     }
 
     /**
@@ -60,48 +53,58 @@ public class AddDoctor extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtHeight = new javax.swing.JTextField();
+        lblHeightErr = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         txtEID = new javax.swing.JTextField();
         txtFname = new javax.swing.JTextField();
         txtLname = new javax.swing.JTextField();
-        txtSp = new javax.swing.JTextField();
+        txtBlood = new javax.swing.JTextField();
         cmbGender = new javax.swing.JComboBox<>();
         btnAddNewDoc = new javax.swing.JButton();
-        ftxtHiredate = new javax.swing.JFormattedTextField();
         lblEID = new javax.swing.JLabel();
+        txtWeight = new javax.swing.JTextField();
+        lblWeightErr = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
+        lblAgeErr = new javax.swing.JLabel();
         lblLnameErr = new javax.swing.JLabel();
         lblFnameErr = new javax.swing.JLabel();
-        lblHiredateError = new javax.swing.JLabel();
-        lblSpErr = new javax.swing.JLabel();
+        lblBloodErr = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Add New Employee");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Add New Doctor");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setText("Emirates ID:");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("First Name:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("Last Name:");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("HIREDATE:");
+        jLabel1.setText("Add New Patient");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("Specialization:");
+        jLabel7.setText("Blood Type:");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Gender:");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setText("Weight:");
+
+        txtHeight.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtHeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHeightActionPerformed(evt);
+            }
+        });
+
+        lblHeightErr.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        lblHeightErr.setForeground(new java.awt.Color(255, 0, 0));
+        lblHeightErr.setText("error label");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel10.setText("Height:");
 
         txtEID.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -114,10 +117,10 @@ public class AddDoctor extends javax.swing.JFrame {
             }
         });
 
-        txtSp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtSp.addActionListener(new java.awt.event.ActionListener() {
+        txtBlood.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtBlood.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSpActionPerformed(evt);
+                txtBloodActionPerformed(evt);
             }
         });
 
@@ -131,12 +134,34 @@ public class AddDoctor extends javax.swing.JFrame {
             }
         });
 
-        ftxtHiredate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MMM-yyyy"))));
-        ftxtHiredate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         lblEID.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         lblEID.setForeground(new java.awt.Color(255, 0, 0));
         lblEID.setText("error label");
+
+        txtWeight.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtWeight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtWeightActionPerformed(evt);
+            }
+        });
+
+        lblWeightErr.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        lblWeightErr.setForeground(new java.awt.Color(255, 0, 0));
+        lblWeightErr.setText("error label");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setText("Age:");
+
+        txtAge.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgeActionPerformed(evt);
+            }
+        });
+
+        lblAgeErr.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        lblAgeErr.setForeground(new java.awt.Color(255, 0, 0));
+        lblAgeErr.setText("error label");
 
         lblLnameErr.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         lblLnameErr.setForeground(new java.awt.Color(255, 0, 0));
@@ -146,61 +171,78 @@ public class AddDoctor extends javax.swing.JFrame {
         lblFnameErr.setForeground(new java.awt.Color(255, 0, 0));
         lblFnameErr.setText("error label");
 
-        lblHiredateError.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
-        lblHiredateError.setForeground(new java.awt.Color(255, 0, 0));
-        lblHiredateError.setText("error label");
+        lblBloodErr.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        lblBloodErr.setForeground(new java.awt.Color(255, 0, 0));
+        lblBloodErr.setText("error label");
 
-        lblSpErr.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
-        lblSpErr.setForeground(new java.awt.Color(255, 0, 0));
-        lblSpErr.setText("error label");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("Emirates ID:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("First Name:");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Last Name:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(jLabel1)
+                .addContainerGap(217, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEID, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtFname, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                .addComponent(txtLname)
-                                .addComponent(txtSp)
-                                .addComponent(ftxtHiredate)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtEID)
+                            .addComponent(txtFname)
+                            .addComponent(txtLname)
+                            .addComponent(txtAge)
+                            .addComponent(txtHeight)
+                            .addComponent(txtWeight)
+                            .addComponent(txtBlood, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnAddNewDoc)
+                                    .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel7))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEID, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                    .addComponent(lblHeightErr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblFnameErr, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(lblFnameErr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblLnameErr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblHiredateError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblSpErr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(lblEID, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAddNewDoc)
-                            .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                                .addComponent(lblAgeErr, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblWeightErr)
+                            .addComponent(lblBloodErr, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtEID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,32 +257,56 @@ public class AddDoctor extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtLname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLnameErr))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblHiredateError, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(ftxtHiredate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAgeErr))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblHeightErr)
+                    .addComponent(jLabel10))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblWeightErr))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBlood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(txtSp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSpErr))
-                .addGap(18, 18, 18)
+                    .addComponent(lblBloodErr))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnAddNewDoc)
-                .addGap(0, 73, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtHeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHeightActionPerformed
+
     private void txtLnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLnameActionPerformed
+    void clearInputBoxes() {
+
+        txtEID.setText("");
+        txtFname.setText("");
+        txtLname.setText("");
+        txtAge.setText("");
+        txtHeight.setText("");
+        txtWeight.setText("");
+        txtBlood.setText("");
+        cmbGender.setSelectedIndex(0);
+    }
 
     public boolean isInteger(String s) {
         try {
@@ -252,9 +318,6 @@ public class AddDoctor extends javax.swing.JFrame {
     }
 
     public boolean isDouble(String s) {
-        if(s.length()==0){
-            return true;
-        }
         try {
             Double.parseDouble(s);
             return true;
@@ -266,17 +329,29 @@ public class AddDoctor extends javax.swing.JFrame {
     void clearErrorLabels() {
         lblEID.setText("");
         lblEID.setVisible(false);
+
         lblFnameErr.setText("");
         lblFnameErr.setVisible(false);
+
         lblLnameErr.setText("");
         lblLnameErr.setVisible(false);
-        lblHiredateError.setText("");
-        lblHiredateError.setVisible(false);
-        lblSpErr.setText("");
-        lblSpErr.setVisible(false);
+
+        lblAgeErr.setVisible(false);
+        lblAgeErr.setText("");
+
+        lblBloodErr.setVisible(false);
+        lblBloodErr.setText("");
+
+        lblHeightErr.setVisible(false);
+        lblHeightErr.setText("");
+
+        lblWeightErr.setVisible(false);
+        lblWeightErr.setText("");
 
     }
-
+    private void txtBloodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBloodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBloodActionPerformed
     boolean isValidData() {
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
         clearErrorLabels();
@@ -285,7 +360,7 @@ public class AddDoctor extends javax.swing.JFrame {
             if (txtEID.getText().trim().isEmpty()) {
                 lblEID.setText("Invalid. Cannot be empty.");
             } else if (!pattern.matcher(txtEID.getText()).matches()) {
-                lblEID.setText("Invalid. Must be integer.");
+                lblEID.setText("Invalid. Must be NUMBERS only.");
             } else {
                 lblEID.setText("Invalid. Must be 15 numbers.");
             }
@@ -315,27 +390,40 @@ public class AddDoctor extends javax.swing.JFrame {
             result = false;
         }
 
-        if (txtSp.getText().trim().isEmpty() || (txtLname.getText().trim().length() > 25)) {
-            if ((txtLname.getText().trim().length() > 25)) {
-                lblSpErr.setText("Invalid. Must be < 25 chars.");
+        if ((txtAge.getText().trim().length() > 3 || !isInteger(txtAge.getText()))) {
+            if (txtAge.getText().trim().length() > 3) {
+                lblAgeErr.setText("Invalid. Must be < 2 chars.");
             } else {
-                lblSpErr.setText("Invalid. Cannot be empty.");
+                lblAgeErr.setText("Invalid. Must be Number.");
             }
 
-            lblSpErr.setVisible(true);
+            lblAgeErr.setVisible(true);
+            result = false;
+        }
+        if (!isDouble(txtWeight.getText())) {
+            //can be NULL
+            if (!txtWeight.getText().trim().isEmpty()) {
+                lblWeightErr.setText("Invalid. Must be Number.");
+                lblWeightErr.setVisible(true);
+                result = false;
+            }
+
+        }
+        if (!isDouble(txtHeight.getText())) {
+            if (!txtHeight.getText().trim().isEmpty()) {
+                lblHeightErr.setText("Invalid. Must be Number.");
+                lblHeightErr.setVisible(true);
+                result = false;
+            }
+
+        }
+        if ((txtBlood.getText().trim().length() > 2)) {
+            lblBloodErr.setText("Invalid. Must be max 2 chars.");
+            lblBloodErr.setVisible(true);
             result = false;
         }
 
         return result;
-    }
-
-    void clearInputBoxes() {
-        txtEID.setText("");
-        txtFname.setText("");
-        txtLname.setText("");
-        ftxtHiredate.setText("");
-        txtSp.setText("");
-        cmbGender.setSelectedIndex(0);
     }
 
     private void btnAddNewDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewDocActionPerformed
@@ -344,23 +432,34 @@ public class AddDoctor extends javax.swing.JFrame {
         try {
 
             if (isValidData()) {
-                String prepSQL = "INSERT INTO dtw_doctor (EID, fname, lname, specialization, gender) VALUES ("
+ 
+                if (txtHeight.getText().isEmpty()) {
+                    txtHeight.setText("NULL");
+                    
+                }
+                if (txtWeight.getText().isEmpty()) {
+                    txtWeight.setText("NULL");
+                }
+                String prepSQL = "INSERT INTO dtw_patient (EID, fname, lname, age, gender, weight, height, blood_type) VALUES ("
                         + txtEID.getText()
                         + ",'" + txtFname.getText() + "'"
                         + ", '" + txtLname.getText() + "'"
-                        + ", '" + txtSp.getText() + "'"
-                        + ", '" + cmbGender.getSelectedItem().toString() + "')";
+                        + "," + Integer.parseInt(txtAge.getText())
+                        + ", '" + cmbGender.getSelectedItem().toString() + "'"
+                        + "," + (txtWeight.getText())
+                        + "," + (txtHeight.getText())
+                        + ", '" + txtBlood.getText().toUpperCase() + "')";
 
                 int result = dbCon.executePrepared(prepSQL);
                 if (result > 0) {
 
-                    javax.swing.JLabel label = new javax.swing.JLabel("New Doctor added successfully.");
+                    javax.swing.JLabel label = new javax.swing.JLabel("New Patient added successfully.");
                     label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
                     JOptionPane.showMessageDialog(null, label, "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
 
                     clearInputBoxes();
                 } else {
-                    // check validation errors 
+                    // check validation errors
                 }
 
             } else {
@@ -375,6 +474,18 @@ public class AddDoctor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error adding new employee.");
         }
     }//GEN-LAST:event_btnAddNewDocActionPerformed
+
+    private void txtWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtWeightActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtWeightActionPerformed
+
+    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgeActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -402,34 +513,36 @@ public class AddDoctor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddDoctor().setVisible(true);
+                new AddPatient().setVisible(true);
             }
         });
     }
-    private void txtSpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSpActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddNewDoc;
     private javax.swing.JComboBox<String> cmbGender;
-    private javax.swing.JFormattedTextField ftxtHiredate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblAgeErr;
+    private javax.swing.JLabel lblBloodErr;
     private javax.swing.JLabel lblEID;
     private javax.swing.JLabel lblFnameErr;
-    private javax.swing.JLabel lblHiredateError;
+    private javax.swing.JLabel lblHeightErr;
     private javax.swing.JLabel lblLnameErr;
-    private javax.swing.JLabel lblSpErr;
+    private javax.swing.JLabel lblWeightErr;
+    private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtBlood;
     private javax.swing.JTextField txtEID;
     private javax.swing.JTextField txtFname;
+    private javax.swing.JTextField txtHeight;
     private javax.swing.JTextField txtLname;
-    private javax.swing.JTextField txtSp;
+    private javax.swing.JTextField txtWeight;
     // End of variables declaration//GEN-END:variables
 }

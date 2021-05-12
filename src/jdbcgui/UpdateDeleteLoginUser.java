@@ -282,7 +282,7 @@ public class UpdateDeleteLoginUser extends javax.swing.JFrame {
     private void getNewData() {
         clearInputBoxes();
         try {
-            rs = dbCon.executeStatement("SELECT username, name, type  FROM loginusers");
+            rs = dbCon.executeStatement("SELECT username, name, type  FROM dtw_loginusers");
             rs.beforeFirst();
             rs.first();
             populateFields();
@@ -389,7 +389,7 @@ public class UpdateDeleteLoginUser extends javax.swing.JFrame {
                 if (input_confirmation_update == 0) {
                     //If the user name is changed - make sure no duplacate exists
                     if (!username.getText().trim().equals(rs.getString("username"))) {
-                        rs = dbCon.executeStatement("SELECT * FROM loginusers WHERE LOWER(username) = LOWER('" + username.getText().trim() + "')");
+                        rs = dbCon.executeStatement("SELECT * FROM dtw_loginusers WHERE LOWER(username) = LOWER('" + username.getText().trim() + "')");
                         if (rs.next()) {
                             javax.swing.JLabel label = new javax.swing.JLabel("USERNAME ALREADY EXISTS!");
                             label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
@@ -404,7 +404,7 @@ public class UpdateDeleteLoginUser extends javax.swing.JFrame {
                     byte[] sign = md.digest(password.getText().trim().getBytes());
                     String pwdHash = String.format("%032X", new BigInteger(1, sign));
                     pwdHash = pwdHash.substring(0, Math.min(pwdHash.length(), 25));
-                    String prepSQL = "UPDATE loginusers set username = '" + username.getText().trim() + "'"
+                    String prepSQL = "UPDATE dtw_loginusers set username = '" + username.getText().trim() + "'"
                             + " , password ='" + pwdHash + "'"
                             + " , name = '" + name.getText().trim() + "'"
                             + " , type = " + Integer.parseInt(cmbUsertype.getSelectedItem().toString())
@@ -448,7 +448,7 @@ public class UpdateDeleteLoginUser extends javax.swing.JFrame {
             // make the result set scrolable forward/backward updatable
             int input_confirmation_delete = JOptionPane.showConfirmDialog(null, "Confirm delete employee?");
             if (input_confirmation_delete == 0) {
-                String prepSQL = "DELETE loginusers WHERE username = '" + username.getText().trim() + "'";
+                String prepSQL = "DELETE dtw_loginusers WHERE username = '" + username.getText().trim() + "'";
                 int result =  dbCon.executePrepared(prepSQL);
                 if (result > 0) {
                     javax.swing.JLabel label = new javax.swing.JLabel("Username " + username.getText().trim() + " deleted successfully.");
