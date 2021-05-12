@@ -59,7 +59,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu1.setText("File");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbcgui/logout.png"))); // NOI18N
         jMenuItem1.setText("Logout");
@@ -70,7 +70,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbcgui/close.png"))); // NOI18N
         jMenuItem2.setText("Exit");
@@ -83,12 +83,12 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Employee");
+        jMenu2.setText("Doctor");
         jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuItem3.setText("Add New Employee");
+        jMenuItem3.setText("Add New Doctor");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -96,9 +96,9 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuItem5.setText("Update/Delete Employee");
+        jMenuItem5.setText("Update/Delete Doctor");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -111,7 +111,7 @@ public class Menu extends javax.swing.JFrame {
         menuUser.setText("Users");
         menuUser.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        addUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        addUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         addUser.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         addUser.setText("Add New Login User");
         addUser.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +121,7 @@ public class Menu extends javax.swing.JFrame {
         });
         menuUser.add(addUser);
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jMenuItem7.setText("Update/Delete User");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +136,7 @@ public class Menu extends javax.swing.JFrame {
         deptmenu.setText("Department");
         deptmenu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jMenuItem8.setText("Update/Delete Department");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +172,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        (new AddEmployee()).setVisible(true);
+        (new AddDoctor()).setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
