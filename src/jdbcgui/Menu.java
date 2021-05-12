@@ -41,15 +41,15 @@ public class Menu extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        menuUser = new javax.swing.JMenu();
-        addUser = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         menuPatient = new javax.swing.JMenu();
         addPatient = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         menuPatient1 = new javax.swing.JMenu();
         addMedicine = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        menuUser = new javax.swing.JMenu();
+        addUser = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         deptmenu = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
 
@@ -114,31 +114,6 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        menuUser.setText("Users");
-        menuUser.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        addUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
-        addUser.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        addUser.setText("Add New Login User");
-        addUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addUserActionPerformed(evt);
-            }
-        });
-        menuUser.add(addUser);
-
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuItem7.setText("Update/Delete User");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        menuUser.add(jMenuItem7);
-
-        jMenuBar1.add(menuUser);
-
         menuPatient.setText("Patient");
         menuPatient.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
@@ -184,6 +159,31 @@ public class Menu extends javax.swing.JFrame {
         menuPatient1.add(jMenuItem10);
 
         jMenuBar1.add(menuPatient1);
+
+        menuUser.setText("LoginUsers");
+        menuUser.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        addUser.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
+        addUser.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        addUser.setText("Add New Login User");
+        addUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserActionPerformed(evt);
+            }
+        });
+        menuUser.add(addUser);
+
+        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItem7.setText("Update/Delete User");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        menuUser.add(jMenuItem7);
+
+        jMenuBar1.add(menuUser);
 
         deptmenu.setText("Department");
         deptmenu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -264,6 +264,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
+           (new UpdateDeletePatient()).setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void addMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMedicineActionPerformed

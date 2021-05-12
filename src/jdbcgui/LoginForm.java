@@ -58,7 +58,7 @@ public class LoginForm extends javax.swing.JFrame {
         checkShowPass = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login to JDBC GUI");
+        setTitle("Login to Prescription Management System");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Username:");

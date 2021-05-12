@@ -79,6 +79,7 @@ public class AddPatient extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Add Patient");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Add New Patient");
@@ -349,6 +350,7 @@ public class AddPatient extends javax.swing.JFrame {
         lblWeightErr.setText("");
 
     }
+    
     private void txtBloodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBloodActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBloodActionPerformed

@@ -111,6 +111,7 @@ public class AddMedicine extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Add Medicine");
 
         txtManu.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtManu.addActionListener(new java.awt.event.ActionListener() {
