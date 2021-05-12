@@ -372,7 +372,7 @@ public class AddPatient extends javax.swing.JFrame {
         if (txtFname.getText().trim().isEmpty() || (txtFname.getText().trim().length() > 25)) {
             if (txtFname.getText().trim().isEmpty()) {
                 lblFnameErr.setText("Invalid. Cannot be empty.");
-            } else if ((txtFname.getText().trim().length() > 10)) {
+            } else if ((txtFname.getText().trim().length() > 25)) {
                 lblFnameErr.setText("Invalid. Must be < 25 chars.");
             }
 
@@ -392,7 +392,7 @@ public class AddPatient extends javax.swing.JFrame {
 
         if ((txtAge.getText().trim().length() > 3 || !isInteger(txtAge.getText()))) {
             if (txtAge.getText().trim().length() > 3) {
-                lblAgeErr.setText("Invalid. Must be < 2 chars.");
+                lblAgeErr.setText("Invalid. Must be < 3 chars.");
             } else {
                 lblAgeErr.setText("Invalid. Must be Number.");
             }

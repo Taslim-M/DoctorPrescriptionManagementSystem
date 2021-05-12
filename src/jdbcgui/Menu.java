@@ -47,6 +47,9 @@ public class Menu extends javax.swing.JFrame {
         menuPatient = new javax.swing.JMenu();
         addPatient = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        menuPatient1 = new javax.swing.JMenu();
+        addMedicine = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         deptmenu = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
 
@@ -159,6 +162,29 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(menuPatient);
 
+        menuPatient1.setText("Medicine");
+        menuPatient1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        addMedicine.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        addMedicine.setText("Add New Medicine");
+        addMedicine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMedicineActionPerformed(evt);
+            }
+        });
+        menuPatient1.add(addMedicine);
+
+        jMenuItem10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItem10.setText("Update/Delete Medicine");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        menuPatient1.add(jMenuItem10);
+
+        jMenuBar1.add(menuPatient1);
+
         deptmenu.setText("Department");
         deptmenu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
@@ -240,8 +266,18 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void addMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMedicineActionPerformed
+        // TODO add your handling code here:
+        (new AddMedicine()).setVisible(true);
+    }//GEN-LAST:event_addMedicineActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addMedicine;
     private javax.swing.JMenuItem addPatient;
     private javax.swing.JMenuItem addUser;
     private javax.swing.JMenu deptmenu;
@@ -250,6 +286,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -258,6 +295,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu menuPatient;
+    private javax.swing.JMenu menuPatient1;
     private javax.swing.JMenu menuUser;
     // End of variables declaration//GEN-END:variables
 }
