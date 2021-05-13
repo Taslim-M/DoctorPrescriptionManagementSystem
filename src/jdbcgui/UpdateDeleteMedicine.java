@@ -452,37 +452,32 @@ public class UpdateDeleteMedicine extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            boolean visits_violate = false;
             boolean prescription_violate = false;
-            ResultSet rs2 = dbCon.executeStatement("SELECT * FROM dtw_visits where DID=" + txtEID.getText().trim());
-            if (rs2.next()) {
-                visits_violate = true;
-            }
-            ResultSet rs3 = dbCon.executeStatement("SELECT * FROM dtw_prescribes where DID=" + txtEID.getText().trim());
+            ResultSet rs3 = dbCon.executeStatement("SELECT * FROM dtw_prescribes where MID=" + txtEID.getText().trim());
             if (rs3.next()) {
                 prescription_violate = true;
             }
             //If exists canot delete
-            if (!prescription_violate && !visits_violate) {
-                int input_confirmation_delete = JOptionPane.showConfirmDialog(null, "Confirm delete doctor?");
+            if (!prescription_violate) {
+                int input_confirmation_delete = JOptionPane.showConfirmDialog(null, "Confirm delete medicine?");
                 if (input_confirmation_delete == 0) {
 
-                    String prepSQL = "DELETE dtw_doctor WHERE EID=" + txtEID.getText().trim();
+                    String prepSQL = "DELETE dtw_medicine WHERE ID=" + txtEID.getText().trim();
 
                     int result = dbCon.executePrepared(prepSQL);
                     if (result > 0) {
-                        javax.swing.JLabel label = new javax.swing.JLabel("doctor No " + txtEID.getText().trim() + " deleted successfully.");
+                        javax.swing.JLabel label = new javax.swing.JLabel("medicine ID:" + txtEID.getText().trim() + " deleted successfully.");
                         label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
                         JOptionPane.showMessageDialog(null, label, "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
                         getNewData();
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Cannot delete this doctor since he has visits/prescription assinged.");
+                JOptionPane.showMessageDialog(null, "Cannot delete this medicine since prescription assinged.");
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error adding new doctor.");
+            JOptionPane.showMessageDialog(null, "Error del. medicine");
 
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
