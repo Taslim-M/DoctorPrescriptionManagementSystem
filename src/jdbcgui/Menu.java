@@ -274,6 +274,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
+        (new UpdateDeleteMedicine()).setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
 

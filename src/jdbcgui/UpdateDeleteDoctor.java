@@ -24,7 +24,7 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
 
     myDBCon dbCon;
 
-    ResultSet rs, rsdeptno;
+    ResultSet rs;
 
     /**
      * Creates new form AddEmployee
