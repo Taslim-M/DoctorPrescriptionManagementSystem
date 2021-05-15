@@ -59,7 +59,7 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu - JDBC GUI");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbcgui/employees.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jdbcgui/medicine.jpg"))); // NOI18N
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
@@ -218,7 +218,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

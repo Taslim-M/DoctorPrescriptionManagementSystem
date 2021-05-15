@@ -142,6 +142,7 @@ public class ManagePrescription extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Manage Visit Prescription");
 
         btnAddP.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnAddP.setText("Add Prescription");
