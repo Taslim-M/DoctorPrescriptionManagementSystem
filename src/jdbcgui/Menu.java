@@ -174,7 +174,7 @@ public class Menu extends javax.swing.JFrame {
         menuUser1.add(addVisit);
 
         jMenuItem11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuItem11.setText("Manage Prescription");
+        jMenuItem11.setText("Manage Visit & Prescription");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
