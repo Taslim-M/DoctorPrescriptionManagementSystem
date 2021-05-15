@@ -37,7 +37,7 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
         lblFnameErr.setVisible(false);
         lblLnameErr.setVisible(false);
         lblSpErr.setVisible(false);
-
+        
         cmbGender.removeAllItems();
         cmbGender.addItem("M");
         cmbGender.addItem("F");
@@ -94,6 +94,7 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
         lblFnameErr = new javax.swing.JLabel();
         lblLnameErr = new javax.swing.JLabel();
         lblSpErr = new javax.swing.JLabel();
+        docStat = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Update/Delete Employee");
@@ -186,6 +187,11 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
         lblSpErr.setForeground(new java.awt.Color(255, 0, 0));
         lblSpErr.setText("error label");
 
+        docStat.setBackground(new java.awt.Color(72, 6, 93));
+        docStat.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 18)); // NOI18N
+        docStat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        docStat.setText("Doctor Stat");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,7 +229,10 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDelete)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNext)))
+                        .addComponent(btnNext))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(docStat, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -253,13 +262,15 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(51, 51, 51)
+                .addGap(18, 18, 18)
+                .addComponent(docStat)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
                     .addComponent(btnNext)
                     .addComponent(btnPrevious))
-                .addGap(0, 58, Short.MAX_VALUE))
+                .addGap(0, 46, Short.MAX_VALUE))
         );
 
         pack();
@@ -276,6 +287,9 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
             txtLname.setText(rs.getString("lname"));
             txtSp.setText(rs.getString("specialization"));
             cmbGender.setSelectedItem(rs.getString("gender"));
+            ResultSet rs2 = dbCon.executeStatement("select count(*) as cnt from dtw_makevisit where did="+rs.getString("eid"));
+            rs2.first();
+            docStat.setText("Visited by "+ rs2.getString("cnt") + " patients.");
             EnableDisableButtons();
         } catch (SQLException ex) {
             Logger.getLogger(UpdateDeleteDoctor.class.getName()).log(Level.SEVERE, null, ex);
@@ -532,6 +546,7 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
     private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbGender;
+    private javax.swing.JLabel docStat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
