@@ -103,6 +103,12 @@ public class ManagePrescription extends javax.swing.JFrame {
             } else {
                 btnNext.setEnabled(true);
             }
+            ResultSet rs3 = dbCon.executeStatement("SELECT * FROM dtw_prescribe where VID=" + txtEID.getText().trim());
+            if (rs3.next()) {
+                btnView.setEnabled(true);
+            }else{
+                 btnView.setEnabled(false);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(UpdateDeleteDoctor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -120,7 +126,7 @@ public class ManagePrescription extends javax.swing.JFrame {
 
         btnAddP = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnDelete = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtEID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -135,7 +141,7 @@ public class ManagePrescription extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnAddP.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnAddP.setText("Add Pr.");
+        btnAddP.setText("Add Prescription");
         btnAddP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddPActionPerformed(evt);
@@ -145,11 +151,11 @@ public class ManagePrescription extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("Manage Visit Prescription");
 
-        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnView.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnView.setText("View All Prescription");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnViewActionPerformed(evt);
             }
         });
 
@@ -212,36 +218,36 @@ public class ManagePrescription extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(11, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(59, 59, 59))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtEID, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtDocName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtPatName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnPrevious)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAddP)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDelete)))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtEID, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtDocName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPatName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(159, 159, 159))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnPrevious)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAddP, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnNext)
-                        .addGap(18, 18, 18))))
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnView)
+                        .addGap(210, 210, 210))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,10 +270,11 @@ public class ManagePrescription extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddP)
-                    .addComponent(btnDelete)
                     .addComponent(btnNext)
                     .addComponent(btnPrevious))
                 .addGap(27, 27, 27))
@@ -281,39 +288,10 @@ public class ManagePrescription extends javax.swing.JFrame {
          (new AddPrescription(txtEID.getText().trim())).setVisible(true);
     }//GEN-LAST:event_btnAddPActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
-
-        try {
-            boolean prescription_violate = false;
-            ResultSet rs3 = dbCon.executeStatement("SELECT * FROM dtw_prescribe where MID=" + txtEID.getText().trim());
-            if (rs3.next()) {
-                prescription_violate = true;
-            }
-            //If exists canot delete
-            if (!prescription_violate) {
-                int input_confirmation_delete = JOptionPane.showConfirmDialog(null, "Confirm delete medicine?");
-                if (input_confirmation_delete == 0) {
-
-                    String prepSQL = "DELETE dtw_medicine WHERE ID=" + txtEID.getText().trim();
-
-                    int result = dbCon.executePrepared(prepSQL);
-                    if (result > 0) {
-                        javax.swing.JLabel label = new javax.swing.JLabel("medicine ID:" + txtEID.getText().trim() + " deleted successfully.");
-                        label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
-                        JOptionPane.showMessageDialog(null, label, "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-                        getNewData();
-                    }
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Cannot delete this medicine since prescription assinged.");
-            }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error del. medicine");
-
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+        (new UpdateDeletePrescription(txtEID.getText().trim())).setVisible(true);
+    }//GEN-LAST:event_btnViewActionPerformed
 
     private void txtEIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEIDActionPerformed
         // TODO add your handling code here:
@@ -373,9 +351,9 @@ public class ManagePrescription extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddP;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrevious;
+    private javax.swing.JButton btnView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
