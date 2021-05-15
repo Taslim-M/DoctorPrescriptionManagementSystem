@@ -175,9 +175,8 @@ public class Menu extends javax.swing.JFrame {
         });
         menuUser1.add(addVisit);
 
-        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuItem11.setText("Update/Delete User");
+        jMenuItem11.setText("Manage Prescription");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
@@ -311,6 +310,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
+        (new ManagePrescription()).setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
 
