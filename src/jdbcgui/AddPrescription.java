@@ -5,6 +5,7 @@
  */
 package jdbcgui;
 
+import static java.lang.Integer.parseInt;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -21,10 +22,12 @@ public class AddPrescription extends javax.swing.JFrame {
     myDBCon dbCon;
 
     ResultSet rs;
+    int pat_age;
 
-    public AddPrescription(String visitID) {
+    public AddPrescription(String visitID, String patient_age) {
         initComponents();
         this.setLocationRelativeTo(null);
+        pat_age = parseInt(patient_age);
 
         txtVID.setText(visitID);
         cmbMed.removeAllItems();
@@ -61,7 +64,7 @@ public class AddPrescription extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtVID = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Medicine ID:");
@@ -142,21 +145,27 @@ public class AddPrescription extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-
-            String prepSQL = "INSERT INTO dtw_prescribe (VID, MID) VALUES ('"
-                    + txtVID.getText()
-                    + "','" + cmbMed.getSelectedItem().toString() + "')";
-
-            int result = dbCon.executePrepared(prepSQL);
-            if (result > 0) {
-
-                javax.swing.JLabel label = new javax.swing.JLabel("New Prescription added successfully.");
-                label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
-                JOptionPane.showMessageDialog(null, label, "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-
-                this.dispose();
+            ResultSet rs2 = dbCon.executeStatement("SELECT age_restriction from dtw_medicine where ID=" + cmbMed.getSelectedItem().toString());
+            rs2.first();
+            int medicine_age = rs2.getInt("age_restriction");
+            if (medicine_age > pat_age) {
+                JOptionPane.showMessageDialog(null, "Patient too young for the medicine.");
             } else {
-                // check validation errors
+                String prepSQL = "INSERT INTO dtw_prescribe (VID, MID) VALUES ('"
+                        + txtVID.getText()
+                        + "','" + cmbMed.getSelectedItem().toString() + "')";
+
+                int result = dbCon.executePrepared(prepSQL);
+                if (result > 0) {
+
+                    javax.swing.JLabel label = new javax.swing.JLabel("New Prescription added successfully.");
+                    label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
+                    JOptionPane.showMessageDialog(null, label, "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
+
+                    this.dispose();
+                } else {
+                    // check validation errors
+                }
             }
 
         } catch (SQLException e) {

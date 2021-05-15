@@ -37,7 +37,7 @@ public class ManagePrescription extends javax.swing.JFrame {
         try {
             String str;
             // populate deptno field
-            rs = dbCon.executeStatement("select VID, vdate, d.fname || ' ' || d.lname as doc_name, p.fname||' '|| p.lname as pat_name from dtw_doctor d inner join dtw_makevisit m on m.did= d.eid inner join dtw_patient p on m.pid = p.eid inner join dtw_visit v on m.vid=v.visitid");
+            rs = dbCon.executeStatement("select VID, vdate, d.fname || ' ' || d.lname as doc_name, p.fname||' '|| p.lname as pat_name,p.age from dtw_doctor d inner join dtw_makevisit m on m.did= d.eid inner join dtw_patient p on m.pid = p.eid inner join dtw_visit v on m.vid=v.visitid");
 
             // populate rest of fields
             rs.beforeFirst();
@@ -55,6 +55,7 @@ public class ManagePrescription extends javax.swing.JFrame {
             txtEID.setText(rs.getString("VID"));
             txtDocName.setText(rs.getString("doc_name"));
             txtPatName.setText(rs.getString("pat_name"));
+            txtAge.setText(rs.getString("age"));
             txtDate.setText(rs.getString("vdate").substring(0, Math.min(rs.getString("vdate").length(), 10)));
             EnableDisableButtons();
         } catch (SQLException ex) {
@@ -106,8 +107,8 @@ public class ManagePrescription extends javax.swing.JFrame {
             ResultSet rs3 = dbCon.executeStatement("SELECT * FROM dtw_prescribe where VID=" + txtEID.getText().trim());
             if (rs3.next()) {
                 btnView.setEnabled(true);
-            }else{
-                 btnView.setEnabled(false);
+            } else {
+                btnView.setEnabled(false);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UpdateDeleteDoctor.class.getName()).log(Level.SEVERE, null, ex);
@@ -137,8 +138,10 @@ public class ManagePrescription extends javax.swing.JFrame {
         btnPrevious = new javax.swing.JButton();
         txtPatName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        txtAge = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnAddP.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnAddP.setText("Add Prescription");
@@ -185,7 +188,7 @@ public class ManagePrescription extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("Patient Name:");
+        jLabel4.setText("Patient Age:");
 
         txtDate.setEditable(false);
         txtDate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -214,6 +217,17 @@ public class ManagePrescription extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Date:");
 
+        txtAge.setEditable(false);
+        txtAge.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtAge.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAgeActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setText("Patient Name:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -229,14 +243,16 @@ public class ManagePrescription extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtEID, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtDocName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtPatName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(159, 159, 159))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnPrevious)
@@ -265,12 +281,16 @@ public class ManagePrescription extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPatName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -285,7 +305,7 @@ public class ManagePrescription extends javax.swing.JFrame {
 
     private void btnAddPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPActionPerformed
 
-         (new AddPrescription(txtEID.getText().trim())).setVisible(true);
+        (new AddPrescription(txtEID.getText().trim(),txtAge.getText())).setVisible(true);
     }//GEN-LAST:event_btnAddPActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
@@ -313,6 +333,10 @@ public class ManagePrescription extends javax.swing.JFrame {
     private void txtPatNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPatNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPatNameActionPerformed
+
+    private void txtAgeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAgeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAgeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,6 +383,8 @@ public class ManagePrescription extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtAge;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtDocName;
     private javax.swing.JTextField txtEID;
