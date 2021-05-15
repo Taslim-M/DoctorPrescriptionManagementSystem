@@ -453,7 +453,7 @@ public class UpdateDeleteMedicine extends javax.swing.JFrame {
 
         try {
             boolean prescription_violate = false;
-            ResultSet rs3 = dbCon.executeStatement("SELECT * FROM dtw_prescribes where MID=" + txtEID.getText().trim());
+            ResultSet rs3 = dbCon.executeStatement("SELECT * FROM dtw_prescribe where MID=" + txtEID.getText().trim());
             if (rs3.next()) {
                 prescription_violate = true;
             }

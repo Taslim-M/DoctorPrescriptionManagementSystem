@@ -31,27 +31,35 @@ create table dtw_medicine(
 );
 describe dtw_medicine;
 --------
-create table dtw_visits(
-    dID number(15),
-    pID number(15),
-    Vdate date,
-    constraint visit_pk PRIMARY KEY (dID,pID,Vdate),
-    constraint visit_dID_fk FOREIGN KEY(dID) REFERENCES dtw_doctor(EID),
-    constraint visit_pID_fk FOREIGN KEY(pID) REFERENCES dtw_patient(EID)
+create table dtw_visit(
+    visitID number(5),
+    vdate date,
+    constraint visit_pk PRIMARY KEY (visitID)
 );
-describe dtw_visits;
---------
-create table dtw_prescribes(
+describe dtw_visit;
+
+-------- RELATIONSHIPS
+
+create table dtw_makevisit(
     dID number(15),
     pID number(15),
+    vID number(5),
+    constraint makevisit_pk PRIMARY KEY (dID,pID,vID),
+    constraint makevisit_dID_fk FOREIGN KEY(dID) REFERENCES dtw_doctor(EID),
+    constraint makevisit_pID_fk FOREIGN KEY(pID) REFERENCES dtw_patient(EID),
+    constraint makevisit_vID_fk FOREIGN KEY(vID) REFERENCES dtw_visit(visitID)
+);
+describe dtw_makevisit;
+
+----
+create table dtw_prescribe(
+    vID number(5),
     mID number(15),
-    Pdate date,
-    constraint prescribe_pk PRIMARY KEY (dID,pID,mId,Pdate),
-    constraint prescribe_dID_fk FOREIGN KEY(dID) REFERENCES dtw_doctor(EID),
-    constraint prescribe_pID_fk FOREIGN KEY(pID) REFERENCES dtw_patient(EID),
+    constraint prescribe_pk PRIMARY KEY (vID,mId),
+    constraint prescribe_vID_fk FOREIGN KEY(vID) REFERENCES dtw_visit(visitID),
     constraint prescribe_mID_fk FOREIGN KEY(mID) REFERENCES dtw_medicine(ID)
 );
-describe dtw_prescribes;
+describe dtw_prescribe;
 
 ---------
 

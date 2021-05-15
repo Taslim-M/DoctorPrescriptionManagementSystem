@@ -341,17 +341,13 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
 
         try {
             boolean visits_violate = false;
-            boolean prescription_violate = false;
-            ResultSet rs2 = dbCon.executeStatement("SELECT * FROM dtw_visits where DID=" + txtEID.getText().trim());
+            ResultSet rs2 = dbCon.executeStatement("SELECT * FROM dtw_makevisit where dID=" + txtEID.getText().trim());
             if (rs2.next()) {
                 visits_violate = true;
             }
-            ResultSet rs3 = dbCon.executeStatement("SELECT * FROM dtw_prescribes where DID=" + txtEID.getText().trim());
-            if (rs3.next()) {
-                prescription_violate = true;
-            }
+
             //If exists canot delete
-            if (!prescription_violate && !visits_violate) {
+            if (!visits_violate) {
                 int input_confirmation_delete = JOptionPane.showConfirmDialog(null, "Confirm delete doctor?");
                 if (input_confirmation_delete == 0) {
 
@@ -366,7 +362,7 @@ public class UpdateDeleteDoctor extends javax.swing.JFrame {
                     }
                 }
             }else{
-                JOptionPane.showMessageDialog(null, "Cannot delete this doctor since he has visits/prescription assinged.");
+                JOptionPane.showMessageDialog(null, "Cannot delete this doctor since he has visits assinged.");
             }
 
         } catch (SQLException e) {

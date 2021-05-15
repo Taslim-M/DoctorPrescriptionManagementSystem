@@ -593,17 +593,12 @@ public class UpdateDeletePatient extends javax.swing.JFrame {
 
         try {
             boolean visits_violate = false;
-            boolean prescription_violate = false;
-            ResultSet rs2 = dbCon.executeStatement("SELECT * FROM dtw_visits where PID=" + txtEID.getText().trim());
+            ResultSet rs2 = dbCon.executeStatement("SELECT * FROM dtw_makevisit where PID=" + txtEID.getText().trim());
             if (rs2.next()) {
                 visits_violate = true;
             }
-            ResultSet rs3 = dbCon.executeStatement("SELECT * FROM dtw_prescribes where PID=" + txtEID.getText().trim());
-            if (rs3.next()) {
-                prescription_violate = true;
-            }
             //If exists canot delete
-            if (!prescription_violate && !visits_violate) {
+            if (!visits_violate) {
                 int input_confirmation_delete = JOptionPane.showConfirmDialog(null, "Confirm Delete Patient?");
                 if (input_confirmation_delete == 0) {
 
