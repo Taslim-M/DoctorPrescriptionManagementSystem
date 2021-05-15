@@ -25,6 +25,7 @@ public class AddVisit extends javax.swing.JFrame {
 
     public AddVisit() {
         initComponents();
+          this.setLocationRelativeTo(null);
         dbCon = new myDBCon();
 
         // set all error labels to invisible

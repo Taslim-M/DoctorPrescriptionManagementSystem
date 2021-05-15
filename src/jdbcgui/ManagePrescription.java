@@ -118,7 +118,7 @@ public class ManagePrescription extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnUpdate = new javax.swing.JButton();
+        btnAddP = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -134,11 +134,11 @@ public class ManagePrescription extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnAddP.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnAddP.setText("Add Pr.");
+        btnAddP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnAddPActionPerformed(evt);
             }
         });
 
@@ -213,7 +213,7 @@ public class ManagePrescription extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,7 +236,7 @@ public class ManagePrescription extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnPrevious)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnUpdate)
+                                .addComponent(btnAddP)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnDelete)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -266,7 +266,7 @@ public class ManagePrescription extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
+                    .addComponent(btnAddP)
                     .addComponent(btnDelete)
                     .addComponent(btnNext)
                     .addComponent(btnPrevious))
@@ -276,52 +276,10 @@ public class ManagePrescription extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnAddPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPActionPerformed
 
-//        try {
-//            // make the result set scrolable forward/backward updatable
-//            //            statement = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-//
-//            if (isValidData()) {
-//                //Ask for confirmation
-//                int input_confirmation_update = JOptionPane.showConfirmDialog(null, "Confirm updating medicine?");
-//                if (input_confirmation_update == 0) {
-//                    String prepSQL = "UPDATE dtw_medicine SET name = "
-//                    + "'" + txtName.getText() + "'"
-//                    + " ,age_restriction = '" + txtPatName.getText().trim() + "'"
-//                    + " , manufacturer = '" + txtManu.getText().trim() + "'"
-//                    + " , dosage_per_day =" + cmbDosage.getSelectedItem().toString()
-//                    + " WHERE id =" + txtEID.getText().trim();
-//
-//                    int result = dbCon.executePrepared(prepSQL);
-//                    if (result > 0) {
-//
-//                        javax.swing.JLabel label = new javax.swing.JLabel("medicine ID:" + txtEID.getText() + " updated successfully.");
-//                        label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
-//                        JOptionPane.showMessageDialog(null, label, "SUCCESS", JOptionPane.INFORMATION_MESSAGE);
-//
-//                        getNewData();
-//
-//                    } else {
-//                        // check validation errors
-//                    }
-//
-//                }
-//
-//            } else {
-//
-//                javax.swing.JLabel label = new javax.swing.JLabel("Please fix validation errors...");
-//                label.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 18));
-//                JOptionPane.showMessageDialog(null, label, "ERROR", JOptionPane.ERROR_MESSAGE);
-//
-//            }
-//
-//        } catch (SQLException e) {
-//
-//            JOptionPane.showMessageDialog(null, "Error updating medicine." + e.getMessage());
-//
-//        }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+         (new AddPrescription(txtEID.getText().trim())).setVisible(true);
+    }//GEN-LAST:event_btnAddPActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
@@ -414,10 +372,10 @@ public class ManagePrescription extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddP;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrevious;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
