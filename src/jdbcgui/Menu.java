@@ -53,8 +53,6 @@ public class Menu extends javax.swing.JFrame {
         menuUser = new javax.swing.JMenu();
         addUser = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        deptmenu = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
 
         jMenuItem4.setText("jMenuItem4");
 
@@ -211,21 +209,6 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(menuUser);
 
-        deptmenu.setText("Department");
-        deptmenu.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
-        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jMenuItem8.setText("Update/Delete Department");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        deptmenu.add(jMenuItem8);
-
-        jMenuBar1.add(deptmenu);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -278,11 +261,6 @@ public class Menu extends javax.swing.JFrame {
         (new UpdateDeleteLoginUser()).setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-        (new UpdateDeleteDepartment()).setVisible(true);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
     private void addPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPatientActionPerformed
         // TODO add your handling code here:
         (new AddPatient()).setVisible(true);
@@ -319,7 +297,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem addPatient;
     private javax.swing.JMenuItem addUser;
     private javax.swing.JMenuItem addVisit;
-    private javax.swing.JMenu deptmenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -332,7 +309,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenu menuPatient;
     private javax.swing.JMenu menuPatient1;
