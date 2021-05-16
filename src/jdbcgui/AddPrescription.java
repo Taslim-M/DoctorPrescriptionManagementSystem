@@ -34,11 +34,11 @@ public class AddPrescription extends javax.swing.JFrame {
         dbCon = new myDBCon();
         try {
 
-            rs = dbCon.executeStatement("SELECT id FROM dtw_medicine");
+            rs = dbCon.executeStatement("SELECT id,name FROM dtw_medicine");
 
             // populate mgr combo box
             while (rs.next()) {
-                cmbMed.addItem(rs.getString("id"));
+                cmbMed.addItem(rs.getString("id") + " " + rs.getString("name"));
             }
 
             rs.close();
@@ -105,19 +105,19 @@ public class AddPrescription extends javax.swing.JFrame {
                         .addComponent(btnAddNewMed))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(106, 106, 106)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtVID, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtVID))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbMed, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cmbMed, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(127, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 125, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(115, 115, 115))
         );
@@ -146,15 +146,19 @@ public class AddPrescription extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            ResultSet rs2 = dbCon.executeStatement("SELECT age_restriction from dtw_medicine where ID=" + cmbMed.getSelectedItem().toString());
+            String medID = cmbMed.getSelectedItem().toString().substring(0, Math.min(cmbMed.getSelectedItem().toString().length(), 15));
+            ResultSet rs2 = dbCon.executeStatement("SELECT age_restriction from dtw_medicine where ID=" + medID);
             rs2.first();
+
             int medicine_age = rs2.getInt("age_restriction");
             if (medicine_age > pat_age) {
                 JOptionPane.showMessageDialog(null, "Patient too young for the medicine.");
             } else {
+
+                System.out.print(medID);
                 String prepSQL = "INSERT INTO dtw_prescribe (VID, MID) VALUES ('"
                         + txtVID.getText()
-                        + "','" + cmbMed.getSelectedItem().toString() + "')";
+                        + "','" + medID + "')";
 
                 int result = dbCon.executePrepared(prepSQL);
                 if (result > 0) {
