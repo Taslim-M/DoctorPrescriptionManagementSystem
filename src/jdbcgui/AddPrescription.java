@@ -152,7 +152,7 @@ public class AddPrescription extends javax.swing.JFrame {
 
             int medicine_age = rs2.getInt("age_restriction");
             if (medicine_age > pat_age) {
-                JOptionPane.showMessageDialog(null, "Patient too young for the medicine.");
+                JOptionPane.showMessageDialog(null, "Patient too young for the medicine. Patient Age: " +pat_age+ " Medicine Age Restriction: " + medicine_age);
             } else {
 
                 System.out.print(medID);
