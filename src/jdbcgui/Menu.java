@@ -50,6 +50,7 @@ public class Menu extends javax.swing.JFrame {
         menuUser1 = new javax.swing.JMenu();
         addVisit = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         menuUser = new javax.swing.JMenu();
         addUser = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -182,6 +183,15 @@ public class Menu extends javax.swing.JFrame {
         });
         menuUser1.add(jMenuItem11);
 
+        jMenuItem12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jMenuItem12.setText("Stats");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        menuUser1.add(jMenuItem12);
+
         jMenuBar1.add(menuUser1);
 
         menuUser.setText("LoginUsers");
@@ -291,6 +301,11 @@ public class Menu extends javax.swing.JFrame {
         (new ManagePrescription()).setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        (new Stats()).setVisible(true);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addMedicine;
@@ -304,6 +319,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
