@@ -343,7 +343,7 @@ public class AddMedicine extends javax.swing.JFrame {
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error adding new employee.");
+            JOptionPane.showMessageDialog(null, "Error adding new medicine. Please enter unique ID and the other data correctly.");
         }
     }//GEN-LAST:event_btnAddNewMedActionPerformed
 

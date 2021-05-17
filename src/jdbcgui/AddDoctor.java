@@ -351,7 +351,7 @@ public class AddDoctor extends javax.swing.JFrame {
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error adding new employee.");
+            JOptionPane.showMessageDialog(null, "Error adding new doctor. Please enter unique EID and the other data correctly.");
         }
     }//GEN-LAST:event_btnAddNewDocActionPerformed
     public static void main(String args[]) {
