@@ -253,9 +253,11 @@ public class AddVisit extends javax.swing.JFrame {
             lblVIDErr.setVisible(true);
             result = false;
         }
+        Pattern p2 = Pattern.compile("[0-9]{2}[-][a-zA-Z]{3}[-][0-9]{4}");
+        if (txtDate.getText().trim().isEmpty() || !p2.matcher(txtDate.getText().trim()).matches()) {
 
-        if (txtDate.getText().trim().isEmpty()) {
-            lblDateErr.setText("Invalid. Cannot be empty.");
+            lblDateErr.setText("Invalid. dd-mon-yyyy format please!");
+
             lblDateErr.setVisible(true);
             result = false;
         }
@@ -282,7 +284,7 @@ public class AddVisit extends javax.swing.JFrame {
                 if (result > 0) {
                     String docId = cmbDoc.getSelectedItem().toString().substring(0, Math.min(cmbDoc.getSelectedItem().toString().length(), 15));
                     String patID = cmbPat.getSelectedItem().toString().substring(0, Math.min(cmbPat.getSelectedItem().toString().length(), 15));
-   
+
                     String prepSQL2 = "INSERT INTO dtw_makevisit (did, pid,vid) VALUES ('"
                             + docId
                             + "','" + patID
