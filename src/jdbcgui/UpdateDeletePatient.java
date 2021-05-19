@@ -277,6 +277,7 @@ public class UpdateDeletePatient extends javax.swing.JFrame {
 
         cmbGender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        btnUpdate.setBackground(new java.awt.Color(0, 255, 153));
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -285,6 +286,7 @@ public class UpdateDeletePatient extends javax.swing.JFrame {
             }
         });
 
+        btnDelete.setBackground(new java.awt.Color(255, 102, 102));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {

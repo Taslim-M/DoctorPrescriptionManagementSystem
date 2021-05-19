@@ -167,6 +167,7 @@ public class UpdateDeletePrescription extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("View/Delete Prescription");
 
+        btnDelete.setBackground(new java.awt.Color(255, 102, 102));
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnDelete.setText("Delete Prescription");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
