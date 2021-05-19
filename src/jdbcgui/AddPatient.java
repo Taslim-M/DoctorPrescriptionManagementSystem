@@ -127,6 +127,7 @@ public class AddPatient extends javax.swing.JFrame {
 
         cmbGender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        btnAddNewDoc.setBackground(new java.awt.Color(0, 255, 153));
         btnAddNewDoc.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnAddNewDoc.setText("Add New");
         btnAddNewDoc.addActionListener(new java.awt.event.ActionListener() {

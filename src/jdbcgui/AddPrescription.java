@@ -80,6 +80,7 @@ public class AddPrescription extends javax.swing.JFrame {
             }
         });
 
+        btnAddNewMed.setBackground(new java.awt.Color(153, 255, 153));
         btnAddNewMed.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnAddNewMed.setText("Add New");
         btnAddNewMed.addActionListener(new java.awt.event.ActionListener() {

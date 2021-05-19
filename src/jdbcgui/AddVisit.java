@@ -83,6 +83,7 @@ public class AddVisit extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Visit");
 
+        btnAddNewDept.setBackground(new java.awt.Color(0, 255, 153));
         btnAddNewDept.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnAddNewDept.setText("Add New");
         btnAddNewDept.addActionListener(new java.awt.event.ActionListener() {
