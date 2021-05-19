@@ -448,7 +448,7 @@ public class UpdateDeleteLoginUser extends javax.swing.JFrame {
 
         try {
             // make the result set scrolable forward/backward updatable
-            int input_confirmation_delete = JOptionPane.showConfirmDialog(null, "Confirm delete employee?");
+            int input_confirmation_delete = JOptionPane.showConfirmDialog(null, "Confirm delete user?");
             if (input_confirmation_delete == 0) {
                 String prepSQL = "DELETE dtw_loginusers WHERE username = '" + username.getText().trim() + "'";
                 int result =  dbCon.executePrepared(prepSQL);
